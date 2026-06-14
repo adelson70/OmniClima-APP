@@ -3,7 +3,11 @@ import { ThermometerIcon, GearIcon, MagnifyingGlassIcon } from "phosphor-react-n
 
 export default function TabsLayout() {
   return (
-    <Tabs>
+    <Tabs
+    screenOptions={{
+      headerShown: false
+    }}
+    >
       <Tabs.Screen 
       name="search" 
       options={{ 

@@ -174,12 +174,6 @@ module.exports = {
           error: 'rgb(var(--color-indicator-error)/<alpha-value>)',
         },
       },
-      weather: {
-        dark: '#101B3B', 
-        card: 'rgba(255, 255, 255, 0.08)', 
-        cardActive: '#5B37B7',
-        textLight: '#E2E8F0', 
-      },
       fontFamily: {
         heading: undefined,
         body: undefined,

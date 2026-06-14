@@ -2,14 +2,22 @@ module.exports = function (api) {
   api.cache(true);
 
   return {
-    presets: [['babel-preset-expo'], 'nativewind/babel'],
+    presets: [
+      [
+        'babel-preset-expo', 
+        { jsxImportSource: 'nativewind',
+          unstable_transformImportMeta: true
+
+        }
+      ], 
+      'nativewind/babel'
+    ],
 
     plugins: [
       [
         'module-resolver',
         {
           root: ['./'],
-
           alias: {
             '@': './',
             'tailwind.config': './tailwind.config.js',
@@ -17,6 +25,8 @@ module.exports = function (api) {
         },
       ],
       'react-native-worklets/plugin',
+      
+      'babel-plugin-transform-import-meta', 
     ],
   };
 };

@@ -5,8 +5,8 @@ import '@/global.css';
 
 export default function Layout() {
   return (
-    <GluestackUIProvider>
-      <Stack screenOptions={{ headerShown: false }} />
+    <GluestackUIProvider mode="light">
+      <Stack screenOptions={{ headerShown: false, animation: "none" }} />
     </GluestackUIProvider>
   ) 
 }
