@@ -1,24 +1,40 @@
 import { router } from "expo-router";
 import { View } from "react-native";
 
-import { ArrowLeftIcon } from "phosphor-react-native";
+import { ArrowLeftIcon, EyeClosedIcon, EyeIcon } from "phosphor-react-native";
 
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
-import { Input, InputField } from "@/components/ui/input";
+import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 import { Text } from "@/components/ui/text";
+import { useState } from "react";
+
+type FormData = {
+  email: string;
+  password: string;
+};
 
 export default function Auth() {
-  const handleBack = () => {
-    router.replace("/home");
-  };
+  const [form, setForm] = useState({
+    email:"",
+    password: ""
+  })
+
+  const [showPass, setShowPass] = useState(false)
+
+  const handleForm = (field: keyof FormData, value: string) => {
+    setForm((prev) => ({
+      ...prev,
+      [field]: value
+    }))
+  }
 
   return (
     <View className="flex-1 bg-background-0 px-6">
       {/* Voltar */}
       <Button
-        onPress={handleBack}
+        onPress={()=> {router.replace("/home")}}
         variant="link"
-        className="absolute top-16 left-2 z-10"
+        className="absolute top-16 left-4 z-10"
       >
         <ButtonIcon as={ArrowLeftIcon} />
         <ButtonText>Voltar</ButtonText>
@@ -40,6 +56,7 @@ export default function Auth() {
             placeholder="Digite seu email"
             keyboardType="email-address"
             autoCapitalize="none"
+            onChangeText={(value) => {handleForm("email",value)}}
           />
         </Input>
 
@@ -47,8 +64,12 @@ export default function Auth() {
         <Input className="mb-2">
           <InputField
             placeholder="Digite sua senha"
-            secureTextEntry
+            secureTextEntry={!showPass}
+            onChangeText={(value) => {handleForm("password",value)}}
           />
+          <InputSlot onPress={() => {setShowPass(!showPass)}} className="mr-3">
+            <InputIcon as={showPass ? EyeIcon : EyeClosedIcon} className="w-6 h-6" />
+          </InputSlot>
         </Input>
 
         {/* Esqueceu senha */}
@@ -61,7 +82,7 @@ export default function Auth() {
         </Button>
 
         {/* Entrar */}
-        <Button size="lg">
+        <Button size="lg" onPress={()=> {console.log(form)}}>
           <ButtonText>Entrar</ButtonText>
         </Button>
 
