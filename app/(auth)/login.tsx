@@ -1,4 +1,4 @@
-import { router } from "expo-router";
+import { Redirect, router } from "expo-router";
 import { View } from "react-native";
 
 import { ArrowLeftIcon, EyeClosedIcon, EyeIcon } from "phosphor-react-native";
@@ -7,6 +7,7 @@ import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 import { Text } from "@/components/ui/text";
 import { useState } from "react";
+import { useAuthStore } from "@/src/store/useAuthStore";
 
 type FormData = {
   email: string;
@@ -14,6 +15,7 @@ type FormData = {
 };
 
 export default function Auth() {
+  const { setAuthData, user } = useAuthStore()
   const [form, setForm] = useState({
     email:"",
     password: ""
@@ -26,6 +28,20 @@ export default function Auth() {
       ...prev,
       [field]: value
     }))
+  }
+  
+  // TODO COLOCAR CORRETO
+  const handleLogin = () => {
+    setAuthData(
+      "123",
+      {
+        admin: false,
+        email: "bittencourtadelson1@gmail.com",
+        fisrtName: "adelson",
+        id: "1",
+        lastName: "bittencourt junior"
+      })
+    return router.replace("/settings")
   }
 
   return (
@@ -82,7 +98,7 @@ export default function Auth() {
         </Button>
 
         {/* Entrar */}
-        <Button size="lg" onPress={()=> {console.log(form)}}>
+        <Button size="lg" onPress={()=> {handleLogin()}}>
           <ButtonText>Entrar</ButtonText>
         </Button>
 

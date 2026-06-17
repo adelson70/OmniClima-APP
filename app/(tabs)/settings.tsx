@@ -5,13 +5,13 @@ import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
 import { SignOutIcon, TrashIcon, UserIcon, WifiHighIcon } from "phosphor-react-native";
 
 export default function Settings() {
-  const { isAuthenticated, isHydrated } = useAuthStore()
+  const { isAuthenticated, isHydrated, logout } = useAuthStore()
 
   if (!isHydrated) return null
-  if (isAuthenticated) return <Redirect href={"/login"} />
+  if (!isAuthenticated) return <Redirect href={"/login"} />
 
   return (
-    <View className="flex-1 bg-background-0 px-6 gap-6 py-16">
+    <View className="flex-1 bg-background-0 px-6 gap-6 pt-16">
 
       <Button
         variant="outline"
@@ -39,6 +39,7 @@ export default function Settings() {
       <Button
         variant="outline"
         className="h-20 justify-start rounded-xl border-outline-200"
+        onPress={()=> {logout()}}
       >
         <ButtonIcon as={SignOutIcon} />
         <ButtonText>

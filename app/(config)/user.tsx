@@ -1,7 +1,7 @@
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
 import { router } from "expo-router";
 import { ArrowLeftIcon } from "phosphor-react-native";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 
 export default function User() {
   return (
@@ -15,6 +15,11 @@ export default function User() {
         <ButtonIcon as={ArrowLeftIcon} />
         <ButtonText>Voltar</ButtonText>
       </Button>
+
+      <View className="flex-1 justify-center items-center">
+        <Text>User</Text>
+      </View>
+
     </View>
   );
 }
