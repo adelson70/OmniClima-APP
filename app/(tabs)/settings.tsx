@@ -27,7 +27,7 @@ export default function Settings() {
       <Button
         variant="outline"
         className="h-20 justify-start rounded-xl border-outline-200"
-        onPress={()=> {router.push("/sensors")}}
+        onPress={()=> {router.push("/sensor/")}}
       >
         <ButtonIcon as={WifiHighIcon} />
         <ButtonText>
