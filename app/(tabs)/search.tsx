@@ -15,7 +15,7 @@ export default function Search() {
     >
       {/* Título */}
       <Text className="text-3xl font-bold text-typography-900 mb-6">
-        Localizações
+        Minhas Localizações
       </Text>
 
       {/* Busca */}

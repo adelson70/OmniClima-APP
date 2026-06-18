@@ -16,7 +16,7 @@ export default function Settings() {
       <Button
         variant="outline"
         className="h-20 justify-start rounded-xl border-outline-200"
-        onPress={()=> {router.push("/user")}}
+        onPress={()=> {router.push("/user/")}}
       >
         <ButtonIcon as={UserIcon} />
         <ButtonText>

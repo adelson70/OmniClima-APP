@@ -38,7 +38,7 @@ export default function Sensors() {
             </Input>
           </View>
 
-          <Button className="w-12 h-12 rounded-xl">
+          <Button className="w-12 h-12 rounded-xl" onPress={() => {router.push("/sensor/create")}}>
             <ButtonIcon as={PlusIcon} />
           </Button>
         </View>
