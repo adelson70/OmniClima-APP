@@ -14,7 +14,7 @@ type FormData = {
   password: string;
 };
 
-export default function Auth() {
+export default function Create() {
   const { setAuthData, user } = useAuthStore()
   const [form, setForm] = useState({
     email:"",
@@ -28,20 +28,6 @@ export default function Auth() {
       ...prev,
       [field]: value
     }))
-  }
-  
-  // TODO COLOCAR CORRETO
-  const handleLogin = () => {
-    setAuthData(
-      "123",
-      {
-        admin: false,
-        email: "bittencourtadelson1@gmail.com",
-        fisrtName: "adelson",
-        id: "1",
-        lastName: "bittencourt junior"
-      })
-    return router.replace("/settings")
   }
 
   return (
@@ -88,18 +74,9 @@ export default function Auth() {
           </InputSlot>
         </Input>
 
-        {/* Esqueceu senha */}
-        <Button
-          variant="link"
-          action="primary"
-          className="self-end mb-6"
-        >
-          <ButtonText>Esqueceu sua senha?</ButtonText>
-        </Button>
-
         {/* Entrar */}
-        <Button size="lg" onPress={()=> {handleLogin()}}>
-          <ButtonText>Entrar</ButtonText>
+        <Button size="lg" onPress={()=> {}}>
+          <ButtonText>Criar Conta</ButtonText>
         </Button>
 
         {/* Divisor */}
@@ -119,7 +96,7 @@ export default function Auth() {
             Não possui uma conta?
           </Text>
 
-          <Button variant="link" className="ml-1" onPress={()=> {router.push("/create/")}}>
+          <Button variant="link" className="ml-1">
             <ButtonText>Criar conta</ButtonText>
           </Button>
         </View>
