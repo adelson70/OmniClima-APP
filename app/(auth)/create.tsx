@@ -32,20 +32,10 @@ export default function Create() {
 
   return (
     <View className="flex-1 bg-background-0 px-6">
-      {/* Voltar */}
-      <Button
-        onPress={()=> {router.replace("/home")}}
-        variant="link"
-        className="absolute top-16 left-4 z-10"
-      >
-        <ButtonIcon as={ArrowLeftIcon} />
-        <ButtonText>Voltar</ButtonText>
-      </Button>
-
       {/* Conteúdo */}
       <View className="flex-1 justify-center">
         <Text className="text-3xl font-bold mb-2">
-          Entrar na sua conta
+          Criar sua conta
         </Text>
 
         <Text className="text-typography-500 mb-8">
@@ -93,11 +83,11 @@ export default function Create() {
         {/* Criar conta */}
         <View className="flex-row justify-center items-center">
           <Text className="text-typography-500">
-            Não possui uma conta?
+            Já possui uma conta?
           </Text>
 
-          <Button variant="link" className="ml-1">
-            <ButtonText>Criar conta</ButtonText>
+          <Button variant="link" className="ml-1" onPress={()=> {router.replace("/login")}}>
+            <ButtonText>Entrar</ButtonText>
           </Button>
         </View>
       </View>

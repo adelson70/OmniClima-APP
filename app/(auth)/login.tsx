@@ -93,6 +93,7 @@ export default function Auth() {
           variant="link"
           action="primary"
           className="self-end mb-6"
+          onPress={()=> {router.push("/forget-password")}}
         >
           <ButtonText>Esqueceu sua senha?</ButtonText>
         </Button>
