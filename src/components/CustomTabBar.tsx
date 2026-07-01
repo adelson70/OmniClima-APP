@@ -12,14 +12,27 @@ export function CustomTabBar({
       style={{
         flexDirection: "row",
         justifyContent: "space-around",
-        height: 70,
+        height: 52,
+        backgroundColor: rgb(tokens.colors.primary["0"])
       }}
     >
       {state.routes.map((route, index) => {
         const focused = state.index === index;
+        const styles = {
+          iconColor: focused
+            ? rgb(tokens.colors.primary[500])
+            : rgb(tokens.colors.typography[400]),
+        
+          iconPadding: focused 
+            ? 18 
+            : 10,
+            
+          iconMarginBottom: focused
+            ? 5
+            : 0,
+        };
 
         const tab = tabs[route.name as keyof typeof tabs];
-
         const Icon = tab.Icon;
 
         return (
@@ -33,18 +46,15 @@ export function CustomTabBar({
             }}
           >
             <Icon
-              size={26}
-              color={focused ? rgb(tokens.colors.indicator["primary"]) : rgb(tokens.colors.indicator["muted"])}
+              size={24}
+              color={styles.iconColor}
               weight={focused ? "fill" : "regular"}
+              style={{
+                padding: styles.iconPadding,
+                marginBottom: styles.iconMarginBottom,
+               }}
             />
 
-            <Text
-              style={{
-                color: focused ? rgb(tokens.colors.indicator["primary"]) : rgb(tokens.colors.indicator["muted"]),
-              }}
-            >
-              {tab.label}
-            </Text>
           </TouchableOpacity>
         );
       })}
