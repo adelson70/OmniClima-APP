@@ -8,6 +8,7 @@ import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 import { Text } from "@/components/ui/text";
 import { useState } from "react";
 import { useAuthStore } from "@/src/store/useAuthStore";
+import { CustomInput } from "@/src/components/CustomInput";
 
 type FormData = {
   email: string;
@@ -20,8 +21,8 @@ export default function Auth() {
     email:"",
     password: ""
   })
-
-  const [showPass, setShowPass] = useState(false)
+  const [isValidEmail, setIsValidEmail] = useState(true)
+  // const [showPass, setShowPass] = useState(false)
 
   const handleForm = (field: keyof FormData, value: string) => {
     setForm((prev) => ({
@@ -32,6 +33,7 @@ export default function Auth() {
   
   // TODO COLOCAR CORRETO
   const handleLogin = () => {
+    console.log("form", form)
     setAuthData(
       "123",
       {
@@ -67,26 +69,21 @@ export default function Auth() {
         </Text>
 
         {/* Email */}
-        <Input className="mb-4">
-          <InputField
-            placeholder="Digite seu email"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            onChangeText={(value) => {handleForm("email",value)}}
-          />
-        </Input>
+        <CustomInput
+          placeholder="Digite seu email"
+          value={form.email}
+          mode="email"
+          onChangeText={(value) => {handleForm("email",value)}}
+          onValidate={(isValid) => {setIsValidEmail(isValid)}}
+        />
 
         {/* Senha */}
-        <Input className="mb-2">
-          <InputField
-            placeholder="Digite sua senha"
-            secureTextEntry={!showPass}
-            onChangeText={(value) => {handleForm("password",value)}}
-          />
-          <InputSlot onPress={() => {setShowPass(!showPass)}} className="mr-3">
-            <InputIcon as={showPass ? EyeIcon : EyeClosedIcon} className="w-6 h-6" />
-          </InputSlot>
-        </Input>
+        <CustomInput
+          placeholder="Digite sua senha"
+          value={form.password}
+          mode="password"
+          onChangeText={(value) => {handleForm("password",value)}}
+        />
 
         {/* Esqueceu senha */}
         <Button
