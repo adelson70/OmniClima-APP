@@ -1,15 +1,13 @@
-import { Redirect, router } from "expo-router";
+import { router } from "expo-router";
 import { View } from "react-native";
 
-import { ArrowLeftIcon, EyeClosedIcon, EyeIcon } from "phosphor-react-native";
-
-import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
-import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 import { Text } from "@/components/ui/text";
 import { useEffect, useState } from "react";
 import { useAuthStore } from "@/src/store/useAuthStore";
 import { CustomInput } from "@/src/components/CustomInput";
 import { CustomButton } from "@/src/components/CustomButton";
+import { ButtonBack } from "@/src/components/ButtonBack";
+import { Divisor } from "@/src/components/Divisor";
 
 type FormData = {
   email: string;
@@ -60,14 +58,7 @@ export default function Auth() {
   return (
     <View className="flex-1 bg-background-0 px-6">
       {/* Voltar */}
-      <Button
-        onPress={()=> {router.replace("/home")}}
-        variant="link"
-        className="absolute top-16 left-4 z-10"
-      >
-        <ButtonIcon as={ArrowLeftIcon} />
-        <ButtonText>Voltar</ButtonText>
-      </Button>
+      <ButtonBack onPress={() => {router.replace("/home")}}/>
 
       {/* Conteúdo */}
       <View className="flex-1 justify-center">
@@ -97,14 +88,14 @@ export default function Auth() {
         />
 
         {/* Esqueceu senha */}
-        <Button
+        <CustomButton
+          text="Esqueceu sua senha?"
           variant="link"
           action="primary"
-          className="self-end mb-6"
           onPress={()=> {router.push("/forget-password")}}
-        >
-          <ButtonText>Esqueceu sua senha?</ButtonText>
-        </Button>
+          size="md"
+          classname="self-end mb-4 translate-y-[-10]"
+        />
 
         {/* Entrar */}
         <CustomButton
@@ -117,15 +108,7 @@ export default function Auth() {
         />
 
         {/* Divisor */}
-        <View className="flex-row items-center my-8">
-          <View className="flex-1 h-px bg-outline-200" />
-
-          <Text className="mx-4 text-typography-500">
-            ou
-          </Text>
-
-          <View className="flex-1 h-px bg-outline-200" />
-        </View>
+        <Divisor text="ou" />
 
         {/* Criar conta */}
         <View className="flex-row justify-center items-center">
