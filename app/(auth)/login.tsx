@@ -6,9 +6,10 @@ import { ArrowLeftIcon, EyeClosedIcon, EyeIcon } from "phosphor-react-native";
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 import { Text } from "@/components/ui/text";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuthStore } from "@/src/store/useAuthStore";
 import { CustomInput } from "@/src/components/CustomInput";
+import { CustomButton } from "@/src/components/CustomButton";
 
 type FormData = {
   email: string;
@@ -22,7 +23,7 @@ export default function Auth() {
     password: ""
   })
   const [isValidEmail, setIsValidEmail] = useState(true)
-  // const [showPass, setShowPass] = useState(false)
+  const [isValidForm, setisValidForm] = useState(false)
 
   const handleForm = (field: keyof FormData, value: string) => {
     setForm((prev) => ({
@@ -44,7 +45,17 @@ export default function Auth() {
         lastName: "bittencourt junior"
       })
     return router.replace("/settings")
+
   }
+  
+  useEffect(()=> {
+    if (isValidEmail && form.password.length > 0) {
+      setisValidForm(true)
+    }
+    else {
+      setisValidForm(false)
+    }
+  }, [form])
 
   return (
     <View className="flex-1 bg-background-0 px-6">
@@ -96,9 +107,14 @@ export default function Auth() {
         </Button>
 
         {/* Entrar */}
-        <Button size="lg" onPress={()=> {handleLogin()}}>
-          <ButtonText>Entrar</ButtonText>
-        </Button>
+        <CustomButton
+         action="primary"
+         onPress={()=> {handleLogin()}}
+         text="Entrar"
+         size="lg"
+         variant="solid"
+         disable={!isValidForm}
+        />
 
         {/* Divisor */}
         <View className="flex-row items-center my-8">
@@ -117,9 +133,15 @@ export default function Auth() {
             Não possui uma conta?
           </Text>
 
-          <Button variant="link" className="ml-1" onPress={()=> {router.push("/create/")}}>
-            <ButtonText>Criar conta</ButtonText>
-          </Button>
+          <CustomButton
+            action="primary"
+            onPress={()=> {router.push("/create/")}}
+            text="Criar Conta"
+            size="md"
+            variant="link"
+            classname="ml-1"
+          />
+
         </View>
       </View>
     </View>

@@ -60,7 +60,7 @@ export function CustomInput({
     return (
         <>
             {errorMessage && (
-                <Text className="text-destructive text-sm">{errorMessage}</Text>
+                <Text className="text-error-500 text-sm">{errorMessage}</Text>
             )}
             {message && (
                 <Text className="text-typography-500 text-sm">{message}</Text>
